@@ -1,0 +1,132 @@
+<MarkerScreen>
+        canvas.before:
+
+                Color:
+                        rgba: 1, 1, 1, 0.3
+
+                Rectangle:
+                        pos: self.pos
+                        size: self.size
+                        source: 'kvFiles/appImages/backgroundImages/bifrost.jpg'  # 'Background.jpeg'
+        BoxLayout:
+
+                BoxLayout:
+                        id: imageViewerLeftID
+                        orientation: "vertical"
+
+
+                        BoxLayout:
+                                id: backMenuLabelID
+                                size_hint_y: .3
+                                BoxLayout:
+                                        orientation: "vertical"
+                                        pos_hint : {'y':.8}
+                                        size_hint_y: .2
+                                        Button:
+                                                size_hint_x: .2
+                                                text: 'Voltar'
+                                                on_release: root.backToMarkerLabel() #root.manager.current = 'markerLabelScreenName'
+                                        Label:
+                                                size_hint_x: .4
+                                                size_hint_y: .05
+                                                pos_hint : {'x':.3}
+                                                id: imageInMarkerNameId
+                                                text: 'Percentual pra Teste ( Ex: 0.25)'
+
+                        BoxLayout:
+                                id:imageViewerRootID
+                                orientation: "vertical"
+                                size_hint_y: .7
+                                BoxLayout:
+                                        size_hint_y: .7
+                                        id: imageViewerBoxID
+
+                                        Image:
+                                                id: imageViewerID
+                                                pos_hint : {'y':.4}
+                                                allow_stretch: True
+                                                keep_ratio: False
+
+                                                source: 'kvFiles/appImages/backgroundImages/bifrost.jpg'
+
+                                BoxLayout:
+                                        size_hint_y: .01
+                                        Widget:
+                                                id: separatorMarker
+                                                size_hint_y: None
+
+                                                canvas:
+                                                        Color:
+                                                                rgb: .5 ,  .5 ,  .5
+                                                        Rectangle:
+                                                                pos: 0, root.height*.3
+                                                                size: separatorMarker.width, 2
+
+
+                                BoxLayout:
+                                        id: sliderThumbnailBox
+                                        size_hint_y: .3
+                                        GridLayout:
+                                                pos_hint : {'y':.5}
+                                                spacing: 1
+                                                padding: [10,10]
+                                                id : boxLastClassSelectedThumbnailId
+                                                orientation: "horizontal"
+                                                cols: 6
+                                                height: self.minimum_height
+
+
+                BoxLayout:
+                        orientation: "vertical"
+                        size_hint_x: 0.3
+
+                        BoxLayout:
+                                orientation: "vertical"
+                                BoxLayout:
+                                        ScrollView:
+                                                spacing: 20, 1
+                                                id: scrlvwLabelToSelectForImage
+                                                GridLayout:
+
+                                                        spacing: 5
+                                                        padding: [10,10]
+                                                        id : boxLayoutLabelsToSelectForImageId
+                                                        orientation: "vertical"
+                                                        cols: 1
+                                                        size_hint_y: None
+                                                        scroll_y: sliderLabelSelected.value
+                                                        height: self.minimum_height
+
+                                        Slider:
+                                                size_hint_x: None
+                                                width: root.width*0.05
+                                                id: sliderLabelSelected
+                                                min: 0
+                                                max: 1
+                                                orientation: 'vertical'
+                                                value: scrlvwLabelToSelectForImage.scroll_y
+                                                on_value: scrlvwLabelToSelectForImage.scroll_y = self.value
+
+
+                                BoxLayout:
+                                        orientation: "vertical"
+                                        size_hint_y: .05
+                                        id: buttonToMarkerID
+                                        #disabled: True
+
+                                        Button:
+
+                                                on_release: root.marker_image()
+                                                #size_hint_y: .05
+                                                text: 'Marcar'
+
+
+                                BoxLayout:
+                                        orientation: "vertical"
+                                        size_hint_y: .05
+                                        id: buttonToNextID
+                                        disabled: True
+
+                                        Button:
+                                                on_release: root.nextImage()
+                                                text: 'Próxima'

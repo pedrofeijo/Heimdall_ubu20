@@ -1,0 +1,35 @@
+<MainScreen>
+        canvas.before:
+                Rectangle:
+                        pos: self.pos
+                        size: self.size
+                        source: 'kvFiles/appImages/backgroundImages/cloud.jpg'  # 'Background.jpeg'
+
+        center_x: root.width/2
+        center_y: root.height/2
+        BoxLayout:
+                padding: 180
+                orientation: 'vertical'
+                size_hint_x: .7
+                pos_hint : {'x':.15}
+
+                Button:
+                        on_release: root.manager.current = 'FineTuningScreenName'
+                        text: 'FineTuning Model'
+                Button:
+                        on_release: root.manager.current = 'classifyScreenName'
+                        text: 'Test Model'
+
+                Button:
+                        on_release: root.manager.current = 'markerInitialScreenName'
+                        text: 'Dataset Marker-Tool'
+                Button:
+                        on_release: root.manager.current = 'csvConverterScreenName'
+                        text: 'CSV Converter'
+                Button:
+                        on_release: root.manager.current = 'csvConverterYoloScreenName'
+                        text: 'CSV Yolo Converter'
+                Button:
+                        text: 'Quit'
+                        on_release: app.get_running_app().stop()
+

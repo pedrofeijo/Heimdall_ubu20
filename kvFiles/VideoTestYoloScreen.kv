@@ -1,0 +1,92 @@
+<VideoTestYoloScreen>
+        canvas.before:
+                Rectangle:
+                        pos: self.pos
+                        size: self.size
+                        source: 'kvFiles/appImages/backgroundImages/resgen.png'  # 'Background.jpeg'
+        BoxLayout:
+                orientation: "vertical"
+                BoxLayout:
+                        orientation: "horizontal"
+                        BoxLayout:
+                                orientation: "vertical"
+                                size_hint_y: .2
+                                pos_hint : {'y':.75}
+
+                                Button:
+                                        text: 'Menu'
+                                        on_release: root.manager.current = 'mainScreenName'
+
+                BoxLayout:
+                        orientation: "horizontal"
+                        BoxLayout:
+                                orientation: "vertical"
+                                size_hint_y: .2
+                                pos_hint : {'y':.75}
+
+                                TextInput:
+                                        id: text_input_weights
+
+                                        height: 30
+                                        multiline: False
+                                        on_text_validate: root.textInputActivate()
+
+                                Button:
+                                        text: 'Selecionar .weights'
+                                        on_release: root.show_load_weights()
+
+                        BoxLayout:
+                                orientation: "vertical"
+                                size_hint_y: .2
+                                pos_hint : {'y':.75}
+
+                                TextInput:
+                                        id: text_input_names
+
+                                        height: 30
+                                        multiline: False
+                                        on_text_validate: root.textInputActivate()
+
+                                Button:
+                                        text: 'Selecionar .names'
+                                        on_release: root.show_load_names()
+
+                        BoxLayout:
+                                orientation: "vertical"
+                                size_hint_y: .2
+                                pos_hint : {'y':.75}
+
+                                TextInput:
+                                        id: text_input_cfg
+
+                                        height: 30
+                                        multiline: False
+                                        on_text_validate: root.textInputActivate()
+
+                                Button:
+                                        text: 'Selecionar .cfg'
+                                        on_release: root.show_load_cfg()
+
+                        BoxLayout:
+                                orientation: "vertical"
+                                size_hint_y: .2
+                                pos_hint : {'y':.75}
+
+                                TextInput:
+                                        id: text_input_video
+
+                                        height: 30
+                                        multiline: False
+                                        on_text_validate: root.textInputActivate()
+
+                                Button:
+                                        text: 'Selecionar Video'
+                                        on_release: root.show_load_video()
+                        BoxLayout:
+                                orientation: "vertical"
+                                size_hint_y: .2
+                                pos_hint : {'y':.75}
+
+                                Button:
+                                        text: 'Testar Modelo'
+                                        on_release: root.run()

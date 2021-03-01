@@ -1,0 +1,105 @@
+<FineTuningScreen>
+        center_x: root.width/2
+        center_y: root.height/2
+
+        canvas.before:
+                Rectangle:
+                        pos: self.pos
+                        size: self.size
+                        source: 'kvFiles/appImages/backgroundImages/bifrost.jpg'  # 'Background.jpeg'
+
+        BoxLayout:
+
+                BoxLayout:
+                        orientation: "vertical"
+                        size_hint_y: .2
+                        pos_hint : {'y':.75}
+
+                        Button:
+                                text: 'Menu'
+                                on_release: root.manager.current = 'mainScreenName'
+
+                        TextInput:
+                                id: text_input
+                     ##           size_hint_y: .01
+                                height: 30
+                                multiline: False
+                                on_text_validate: root.textInputActivate()
+                                                ## disabled: not checkbox_HU.active
+
+                        Button:
+                        ##        size_hint_y: .01
+                                on_release: root.show_load()
+                                text: 'Selecione um CSV'
+
+
+
+                BoxLayout:
+                        id : boxLayoutFineTuningScreenSelectId
+                        pos_hint : {'y':.75}
+                        size_hint:  .6, .2
+                        disabled: True
+                        Button:
+                                text:'Select Extractor'
+                                on_release: root.loadDropDownList()
+
+                        BoxLayout:
+                                id : boxLayoutFineTuningScreenCheckBoxesId
+                                orientation: "vertical"
+                                BoxLayout:
+                                        Label:
+                                                text:'All'
+                                        CheckBox:
+                                                text:'ALL'
+                                                id: checkboxFeAll
+                                                active: True
+
+                                BoxLayout:
+
+                                        id: checkboxHUBox
+                                        disabled: checkboxFeAll.active
+                                        Label:
+                                                text:'HU'
+                                        CheckBox:
+                                                name: 'checkbox_HU'
+                                                id: checkbox_HU
+
+                                BoxLayout:
+                                        id: checkboxLBPBox
+                                        disabled: checkboxFeAll.active
+                                        Label:
+                                                text:'LBP'
+                                        CheckBox:
+                                                id: checkbox_LBP
+                                                text:'LBP'
+
+                                BoxLayout:
+                                        id: checkboxGLCMBox
+                                        disabled: checkboxFeAll.active
+                                        Label:
+                                                text:'GLCM'
+                                        CheckBox:
+                                                id: checkbox_GLCM
+                                                text:'GLCM'
+
+                                BoxLayout:
+                                        id: checkboxSCMBox
+                                        disabled: checkboxFeAll.active
+                                        Label:
+                                                text:'SCM'
+                                        CheckBox:
+                                                id: checkbox_SCM
+                                                text:'SCM'
+
+
+
+                BoxLayout:
+                        id : boxLayoutFineTuningScreenRunId
+                        size_hint:  .6, .2
+                        pos_hint : {'y':.75}
+                        disabled: True
+                        Button:
+                        ##        size_hint_y: .01
+                                on_release: root.run(text_input.text,[checkbox_HU,checkbox_LBP,checkbox_GLCM,checkbox_SCM,checkboxFeAll],'b')
+                                text: 'Run'
+

@@ -1,0 +1,102 @@
+<MarkerLabelScreen>
+        canvas.before:
+
+                Color:
+                        rgba: 1, 1, 1, 0.4
+
+                Rectangle:
+                        pos: self.pos
+                        size: self.size
+                        source: 'kvFiles/appImages/backgroundImages/bifrost.jpg'  # 'Background.jpeg'
+        BoxLayout:
+                BoxLayout:
+
+                        orientation: "vertical"
+                        BoxLayout:
+                                orientation: "vertical"
+
+                                size_hint_y: .05
+                                pos_hint : {'y':.9}
+
+                                Button:
+                                        text: 'Voltar'
+                                        on_release: root.manager.current = 'markerInitialScreenName'
+                                        #manager.current = 'markerInitialScreenName'
+                        BoxLayout:
+                                ScrollView:
+                                        spacing: 20, 1
+                                        id: scrlvwLabelSelection
+                                        GridLayout:
+
+                                                spacing: 1
+                                                padding: [10,10]
+                                                id : boxLayoutLabelsAvailableId
+                                                orientation: "vertical"
+                                                cols: 1
+                                                size_hint_y: None
+                                                scroll_y: sliderLabelSelection.value
+                                                height: self.minimum_height
+
+                                Slider:
+                                        size_hint_x: None
+                                        width: root.width*0.05
+                                        id: sliderLabelSelection
+                                        min: 0
+                                        max: 1
+                                        orientation: 'vertical'
+                                        value: scrlvwLabelSelection.scroll_y
+                                        on_value: scrlvwLabelSelection.scroll_y = self.value
+
+                BoxLayout:
+
+                        pos_hint : {'x':.3}
+                        pos_hint : {'y':.5}
+                        Button:
+                                size_hint_x: .4
+                                size_hint_y: .05
+                                on_release: root.filtrar_labels()
+                                text: 'Filtrar Labels'
+
+
+
+
+                BoxLayout:
+
+                        orientation: "vertical"
+                        BoxLayout:
+                                orientation: "vertical"
+
+                                size_hint_y: .05
+
+
+                                Button:
+                                        on_release: root.get_available_images()
+                                        text: 'Selecionar label e marcar'
+
+                        BoxLayout:
+                                ScrollView:
+                                        spacing: 20, 1
+                                        id: scrlvwLabelSelected
+                                        GridLayout:
+
+                                                spacing: 1
+                                                padding: [10,10]
+                                                id : boxLayoutLabelsCheckedId
+                                                orientation: "vertical"
+                                                cols: 1
+                                                size_hint_y: None
+                                                scroll_y: sliderLabelSelected.value
+                                                height: self.minimum_height
+
+                                Slider:
+                                        size_hint_x: None
+                                        width: root.width*0.05
+                                        id: sliderLabelSelected
+                                        min: 0
+                                        max: 1
+                                        orientation: 'vertical'
+                                        value: scrlvwLabelSelected.scroll_y
+                                        on_value: scrlvwLabelSelected.scroll_y = self.value
+
+
+

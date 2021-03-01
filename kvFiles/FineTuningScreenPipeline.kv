@@ -1,0 +1,87 @@
+<FineTuningScreenPipeline>
+        center_x: root.width/2
+        center_y: root.height/2
+
+
+
+        canvas.before:
+
+
+                Color:
+                        rgba: 1, 1, 1, 0.4
+
+                Rectangle:
+
+                        pos: self.pos
+                        size: self.size
+                        source: 'kvFiles/appImages/backgroundImages/bifrost.png'  # 'Background.jpeg'
+
+
+        BoxLayout:
+                id : boxLayoutMainPipelineScreenId
+                orientation: "horizontal"
+
+                BoxLayout:
+                        size_hint_x: .4
+                        orientation: "vertical"
+
+
+
+
+                        Button:
+                                size_hint_y: .1
+                                text: 'Voltar'
+                                on_release: root.manager.current = 'FineTuningScreenName'
+
+                        BoxLayout:
+
+                                ScrollView:
+                                        spacing: 20, 5
+                                        id: scrlvwPipelineSelectModel
+                                        GridLayout:
+                                                spacing: 1
+                                                padding: [10,10]
+                                                id : boxLayoutFineTuningScreenPipelineSelectModelId
+                                                orientation: "vertical"
+                                                cols: 1
+                                                size_hint_y: None
+                                                scroll_y: sliderPipelineSelectModel.value
+                                                height: self.minimum_height
+
+
+                                Slider:
+                                        size_hint_x: None
+
+                                        width: root.width*0.05
+                                        id: sliderPipelineSelectModel
+                                        min: 0
+                                        max: 1
+                                        orientation: 'vertical'
+                                        value: scrlvwPipelineSelectModel.scroll_y
+                                        on_value: scrlvwPipelineSelectModel.scroll_y = self.value
+
+                        BoxLayout:
+
+                                size_hint_y: .1
+                                Button:
+                                        on_release: root.selectModel()
+                                        text: 'Selecionar Modelo'
+                BoxLayout:
+                        orientation: "vertical"
+
+                        BoxLayout:
+                                ScrollView:
+                                        id: scrlvwPipelineText
+                                        size_hint: 0.02, 0.02
+
+                                TextInput:
+                                        id: scrlvPipelineTextInputModelID
+                                        text: ''
+
+                                        height: max(self.minimum_height, scrlvwPipelineText.height)
+                                        on_cursor_row: root.change_scroll_y(scrlvPipelineTextInputModelID, scrlvwPipelineText)
+                        BoxLayout:
+                                size_hint_y: .1
+                                Button:
+                                        on_release: root.train()
+                                        text: 'TREINAR'

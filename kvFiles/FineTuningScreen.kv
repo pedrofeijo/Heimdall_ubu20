@@ -1,0 +1,185 @@
+<FineTuningScreen>
+        center_x: root.width/2
+        center_y: root.height/2
+
+        orientation: "vertical"
+
+        canvas.before:
+
+
+                Color:
+                        rgba: 1, 1, 1, 0.4
+
+                Rectangle:
+
+                        pos: self.pos
+                        size: self.size
+                        source: 'kvFiles/appImages/backgroundImages/bifrost.png'  # 'Background.jpeg'
+
+        BoxLayout:
+
+                BoxLayout:
+                        id : boxLayoutFineTuningScreenCSVId
+                        orientation: "vertical"
+                        size_hint_y: .2
+                        pos_hint : {'y':.8}
+                        size_hint_x: .5
+
+                        Button:
+                                text: 'Menu'
+                                on_release: root.manager.current = 'mainScreenName'
+
+                        TextInput:
+                                id: text_input
+                     ##           size_hint_y: .01
+                                height: 30
+                                multiline: False
+                                on_text_validate: root.textInputActivate()
+                                                ## disabled: not checkbox_HU.active
+
+                        Button:
+                        ##        size_hint_y: .01
+                                on_release: root.show_load()
+                                text: 'Selecione um CSV'
+
+
+
+                BoxLayout:
+                        id : boxLayoutFineTuningScreenSelectId
+
+                        disabled: True
+                        orientation: "vertical"
+                        pos_hint : {'y':.5}
+                        size_hint_y: .5
+
+
+
+
+
+                BoxLayout:
+                        id : boxLayoutFineTuningScreenRunId
+                        disabled: True
+                        orientation: "vertical"
+                        size_hint_y: .4
+                        pos_hint : {'y':.6}
+                        BoxLayout:
+                                pos_hint : {'y':.9}
+                                size_hint_y: .1
+                                Button:
+                                        on_release: root.run()
+                                        text: 'Ver Classes'
+                        BoxLayout:
+
+                                ScrollView:
+                                        spacing: 20, 1
+                                        id: scrlvw
+                                        GridLayout:
+                                                spacing: 1
+                                                padding: [10,10]
+                                                id : boxLayoutFineTuningScreenRunCheckBoxesId
+                                                orientation: "vertical"
+                                                cols: 1
+                                                size_hint_y: None
+                                                scroll_y: slider.value
+                                                height: self.minimum_height
+
+                                Slider:
+                                        size_hint_x: None
+
+                                        width: root.width*0.05
+                                        id: slider
+                                        min: 0
+                                        max: 1
+                                        orientation: 'vertical'
+                                        value: scrlvw.scroll_y
+                                        on_value: scrlvw.scroll_y = self.value
+                        BoxLayout:
+                                pos_hint : {'y':.9}
+                                size_hint_y: .1
+                                Button:
+                                        on_release: root.extractClassesSelected()
+                                        text: 'Filtrar Classes'
+
+        Widget:
+                id: separator
+                size_hint_y: None
+                height: 16
+                canvas:
+                        Color:
+                                rgb: .5 ,  .5 ,  .5
+                        Rectangle:
+                                pos: 0, root.height/2
+                                size: separator.width, 2
+
+        BoxLayout:
+
+
+                BoxLayout:
+                        id : boxLayoutFineTuningScreenSelectedCheckBoxesMasterId
+                        disabled: True
+                        size_hint_y: .4
+
+                        size_hint_x: .8
+
+                        ScrollView:
+                                spacing: 20, 5
+                                id: scrlvwSelected
+                                GridLayout:
+                                        spacing: 1
+                                        padding: [10,10]
+                                        id : boxLayoutFineTuningScreenSelectedCheckBoxesId
+                                        orientation: "vertical"
+                                        cols: 1
+                                        size_hint_y: None
+                                        scroll_y: sliderSelected.value
+                                        height: self.minimum_height
+
+                        Slider:
+                                id: sliderSelected
+                                size_hint_x: None
+
+                                width: root.width*0.05
+
+                                min: 0
+                                max: 1
+                                orientation: 'vertical'
+                                value: scrlvwSelected.scroll_y
+                                on_value: scrlvwSelected.scroll_y = self.value
+
+
+
+                BoxLayout:
+                        id : boxLayoutFineTuningScreenSelectTestProportionId
+                        disabled: True
+
+
+
+                        size_hint_y: .5
+
+                        Label:
+                                text: 'Percentual pra Teste ( Ex: 0.25)'
+
+                        TextInput:
+                                id: text_input_TestProportion
+                                height: 10
+                                multiline: False
+                                text: '0.25'
+                                size_hint_y: 0.1
+                                size_hint_x: 0.2
+                                pos_hint : {'y':0.45}
+
+                BoxLayout:
+                        id : boxLayoutFineTuningScreenRunId2
+                        disabled: True
+                        orientation: "vertical"
+                        size_hint_y: .5
+
+                        BoxLayout:
+                                pos_hint : {'y':.9}
+                                size_hint_y: .2
+
+                                Button:
+                                        on_release: root.buildConfigFiles()
+                                        size_hint_y: .2
+                                        pos_hint : {'y':.40}
+                                        text: 'Construir Arquivos \nde Configuração'

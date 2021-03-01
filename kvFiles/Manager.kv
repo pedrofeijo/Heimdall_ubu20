@@ -1,0 +1,94 @@
+
+<Manager>:
+        center_x: root.width/2
+        center_y: root.height/2
+        id: screen_manager
+
+        mainScreen:mainScreenId
+        fineTuningScreen :FineTuningScreenNameId
+        fineTuningScreenPipeline :FineTuningScreenPipelineNameId
+        classifyScreen:classifyScreenId
+        cnnScreen:cnnScreenId
+        videotestScreen:videotestScreenNameId
+        markerInitialScreen:markerInitialScreenNameId
+        markerLabelScreen: markerLabelScreenNameId
+        markerScreen: markerScreenNameId
+        imageTestYoloScreen:imagetestYoloScreenNameId
+        videoTestYoloScreen:videotestYoloScreenNameId
+        csvConverterScreen:csvConverterScreenNameId
+        csvConverterYoloScreen:csvConverterYoloScreenNameId
+
+        MainScreen:
+                id: mainScreenId
+                name: 'mainScreenName'
+                manager:screen_manager
+
+        FineTuningScreen :
+                id: FineTuningScreenNameId
+                name: 'FineTuningScreenName'
+                manager:screen_manager
+
+
+        FineTuningScreenPipeline:
+                id: FineTuningScreenPipelineNameId
+                name: 'FineTuningScreenPipelineName'
+                manager:screen_manager
+
+        ClassifyScreen:
+                id: classifyScreenId
+                name: 'classifyScreenName'
+                manager:screen_manager
+
+        CnnScreen:
+                id: cnnScreenId
+                name: 'cnnScreenName'
+                manager:screen_manager
+
+        ImageTestYoloScreen:
+                id: imagetestYoloScreenNameId
+                name: 'imagetestYoloScreenName'
+                manager:screen_manager
+
+        VideoTestScreen:
+                id: videotestScreenNameId
+                name: 'videotestScreenName'
+                manager:screen_manager
+
+        VideoTestYoloScreen:
+                id: videotestYoloScreenNameId
+                name: 'videotestYoloScreenName'
+                manager:screen_manager
+
+        MarkerInitialScreen:
+                id: markerInitialScreenNameId
+                name: 'markerInitialScreenName'
+                manager:screen_manager
+
+        MarkerLabelScreen:
+                id: markerLabelScreenNameId
+                name: 'markerLabelScreenName'
+                manager:screen_manager
+
+        MarkerScreen:
+                id: markerScreenNameId
+                name: 'markerScreenName'
+                manager:screen_manager
+
+        PlotMarkerScreen:
+                id: plotMarkerScreenNameId
+                name: 'plotMarkerScreenName'
+                manager:screen_manager
+
+        CsvConverterScreen:
+                id: csvConverterScreenNameId
+                name: 'csvConverterScreenName'
+                manager:screen_manager
+
+        CsvConverterYoloScreen:
+                id: csvConverterYoloScreenNameId
+                name: 'csvConverterYoloScreenName'
+                manager:screen_manager
+
+
+
+

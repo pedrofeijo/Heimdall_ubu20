@@ -1,0 +1,26 @@
+<ClassifyScreen>
+        canvas.before:
+                Rectangle:
+                        pos: self.pos
+                        size: self.size
+                        source: 'kvFiles/appImages/backgroundImages/raimbowBridge.jpg'  # 'Background.jpeg'
+
+        BoxLayout:
+                padding: 180
+                orientation: 'vertical'
+                size_hint_x: .7
+                pos_hint : {'x':.15}
+
+                Button:
+                        text: 'Menu'
+                        on_release: root.manager.current = 'mainScreenName'
+
+                Button:
+                        on_release: root.manager.current = 'videotestScreenName'
+                        text: 'TensorFlow Models'
+                Button:
+                        on_release: root.manager.current = 'imagetestYoloScreenName'
+                        text: 'Yolo Models'
+
+
+

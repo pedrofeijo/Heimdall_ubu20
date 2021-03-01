@@ -1,0 +1,122 @@
+<MarkerInitialScreen>
+        canvas.before:
+
+                Color:
+                        rgba: 1, 1, 1, 0.4
+
+                Rectangle:
+                        pos: self.pos
+                        size: self.size
+                        source: 'kvFiles/appImages/backgroundImages/bifrost.jpg'  # 'Background.jpeg'
+        BoxLayout:
+                BoxLayout:
+                        orientation: "vertical"
+                        size_hint_x: .4
+                        size_hint_y: .05
+                        pos_hint : {'y':.9}
+
+                        Button:
+                                text: 'Menu'
+                                on_release: root.manager.current = 'mainScreenName'
+
+
+                BoxLayout:
+                        orientation: "vertical"
+                        size_hint_y: .1
+                        size_hint_x: 1.5
+                        pos_hint : {'y':.85}
+
+                        TextInput:
+                                id: text_input_username_hostname
+                                write_tab: False
+                                height: 30
+                                multiline: False
+                                text: root.lastCredential['username']+'@'+root.lastCredential['hostname']
+
+                        Label:
+                                text: 'Address (Ex.: username@hostname)'
+
+
+
+                BoxLayout:
+                        orientation: "vertical"
+                        size_hint_x: .75
+                        size_hint_y: .1
+                        pos_hint : {'y':.85}
+
+                        TextInput:
+                                id: text_input_password
+                                write_tab: False
+                                height: 30
+                                multiline: False
+                                text: root.lastCredential['password']
+                                password: True
+                        Label:
+                                text: 'Password'
+
+                BoxLayout:
+                        orientation: "vertical"
+                        size_hint_x: .4
+                        size_hint_y: .05
+                        pos_hint : {'y':.9}
+
+                        Button:
+                                text: 'Login'
+                                on_release: root.read_and_login()
+
+        BoxLayout:
+
+                disabled: True
+                size_hint_y: .1
+                pos_hint : {'x': -.075, 'y':.75}
+                Label:
+                        id : boxLayoutConnectionStatus
+                        text: 'Status de conexção SSH: Desconectado'
+
+        BoxLayout:
+                id : boxLayoutViewerDatasetsId
+
+                disabled: True
+                orientation: "vertical"
+                pos_hint : {'y':.25}
+                size_hint_y: .5
+
+                BoxLayout:
+
+                        disabled: False
+                        orientation: "vertical"
+                        size_hint_y: .4
+                        pos_hint : {'y':.25}
+
+
+                        BoxLayout:
+                                ScrollView:
+                                        spacing: 20, 1
+                                        id: scrlvwDatasetSelection
+                                        GridLayout:
+
+                                                spacing: 1
+                                                padding: [10,10]
+                                                id : boxLayoutAvailablesDatasetsId
+                                                orientation: "vertical"
+                                                cols: 1
+                                                size_hint_y: None
+                                                scroll_y: sliderDatasetSelection.value
+                                                height: self.minimum_height
+
+                                Slider:
+                                        size_hint_x: None
+                                        width: root.width*0.05
+                                        id: sliderDatasetSelection
+                                        min: 0
+                                        max: 1
+                                        orientation: 'vertical'
+                                        value: scrlvwDatasetSelection.scroll_y
+                                        on_value: scrlvwDatasetSelection.scroll_y = self.value
+                        BoxLayout:
+                                pos_hint : {'x':.35, 'y':.25}
+                                size_hint_x: .3
+                                size_hint_y: .1
+                                Button:
+                                        on_release: root.get_dataset()
+                                        text: 'Filtrar Dataset'

@@ -1,0 +1,102 @@
+<ResGen>:
+        manager: manager
+
+        BoxLayout:
+                size: root.size
+
+                ScreenManager:
+                        center_x: root.width/2
+                        center_y: root.height/2
+
+                        id: manager
+
+                        Screen:
+
+                                id: sc2
+                                name: 'extract'
+                                BoxLayout:
+                                        BoxLayout:
+                                                size_hint: 0.6,0.1
+                                                orientation: "vertical"
+                                                pos_hint : {'y':.80}
+
+                                                TextInput:
+                                                        id: text_input
+                                                        size_hint_y: .01
+                                                        height: 30
+                                                        multiline: False
+                                                        ## disabled: not checkbox_HU.active
+
+                                                Button:
+                                                        size_hint_y: .01
+                                                        on_release: root.show_load()
+                                                        text: 'Select Folder'
+
+
+                                        BoxLayout:
+                                                pos_hint : {'y':.75}
+                                                size_hint:  .6, .2
+
+                                                Label:
+                                                        text:'Select Extractor'
+                                                BoxLayout:
+
+                                                        orientation: "vertical"
+                                                        BoxLayout:
+                                                                Label:
+                                                                        text:'HU'
+                                                                CheckBox:
+                                                                        id: checkbox_HU
+                                                        BoxLayout:
+                                                                Label:
+                                                                        text:'LBP'
+                                                                CheckBox:
+                                                                        id: checkbox_LBP
+                                                        BoxLayout:
+                                                                Label:
+                                                                        text:'GLCM'
+                                                                CheckBox:
+                                                                        id: checkbox_GLCM
+                                                        BoxLayout:
+                                                                Label:
+                                                                        text:'SCM'
+                                                                CheckBox:
+                                                                        id: checkbox_SCM
+
+                                        Button:
+                                                text: 'Menu'
+                                                on_release: root.manager.current = 'menu'
+                        Screen:
+
+                                id: sc3
+                                name: 'classify'
+                                BoxLayout:
+
+                                        Button:
+                                                text: 'Select Files'
+                                        Button:
+                                                text: 'Menu'
+                                                on_release: root.manager.current = 'menu'
+                        Screen:
+
+                                id: sc4
+                                name: 'CNN'
+                                BoxLayout:
+                                        Button:
+                                                text: 'Select Files'
+                                        Button:
+                                                text: 'Menu'
+                                                on_release: root.manager.current = 'menu'
+                        Screen:
+                                id: sc5
+                                name: 'ResGen'
+                                BoxLayout:
+                                        Button:
+                                                text: 'Select Files'
+                                        Button:
+                                                text: 'Menu'
+                                                on_release: root.manager.current = 'menu'
+
+
+
+

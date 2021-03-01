@@ -1,0 +1,73 @@
+<VideoTestScreen>
+        canvas.before:
+                Rectangle:
+                        pos: self.pos
+                        size: self.size
+                        source: 'kvFiles/appImages/backgroundImages/resgen.png'  # 'Background.jpeg'
+        BoxLayout:
+                BoxLayout:
+                        orientation: "vertical"
+                        size_hint_y: .2
+                        pos_hint : {'y':.75}
+
+                        Button:
+                                text: 'Menu'
+                                on_release: root.manager.current = 'mainScreenName'
+
+
+                BoxLayout:
+                        orientation: "vertical"
+                        size_hint_y: .2
+                        pos_hint : {'y':.75}
+
+                        TextInput:
+                                id: text_input_pb
+
+                                height: 30
+                                multiline: False
+                                on_text_validate: root.textInputActivate()
+
+                        Button:
+                                text: 'Selecionar Modelo'
+                                on_release: root.show_load_model()
+
+                BoxLayout:
+                        orientation: "vertical"
+                        size_hint_y: .2
+                        pos_hint : {'y':.75}
+
+                        TextInput:
+                                id: text_input_label
+
+                                height: 30
+                                multiline: False
+                                on_text_validate: root.textInputActivate()
+
+                        Button:
+                                text: 'Selecionar Classes'
+                                on_release: root.show_load_labels()
+
+
+                BoxLayout:
+                        orientation: "vertical"
+                        size_hint_y: .2
+                        pos_hint : {'y':.75}
+
+                        TextInput:
+                                id: text_input_video
+
+                                height: 30
+                                multiline: False
+                                on_text_validate: root.textInputActivate()
+
+                        Button:
+                                text: 'Selecionar Video'
+                                on_release: root.show_load_video()
+                BoxLayout:
+                        orientation: "vertical"
+                        size_hint_y: .2
+                        pos_hint : {'y':.75}
+
+                        Button:
+                                text: 'Testar Modelo'
+                                on_release: root.run()

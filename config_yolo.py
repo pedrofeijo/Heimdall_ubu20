@@ -1,0 +1,14 @@
+
+RECORDS_YOLO =  ''
+
+OBJ_NAMES_YOLO = ''
+
+NUM_CLASSES = 0
+
+TRAIN_TEST_YOLO = ''
+
+OBJ_DATA_YOLO = ''
+
+MODEL=''
+
+CFG_YOLO = ''

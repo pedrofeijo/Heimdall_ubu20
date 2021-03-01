@@ -1,0 +1,37 @@
+
+              #  stdin , stdout, stderr = self.ssh_client.exec_command("find " +imagesHomePath+ " -type d")
+              #  folders = stdout.readlines()
+
+
+
+
+            #    print("folders: ", stdout.readlines() )
+
+
+
+   def get_labels(self):
+
+        for idx, wgt in self.listOfDatasets_CheckBoxs_Ids.items():
+
+            if wgt.active:
+                imagesHomePath = os.path.join(self.PATH_DATA,idx.replace("CheckBox_",""))
+                sftp_client = self.ssh_client.open_sftp()
+
+                stdin_F, stdout_F, stderr_F = self.ssh_client.exec_command("find " + imagesHomePath + " -type f")
+                files = stdout_F.readlines()
+
+
+                for filePath in files:
+                    print(filePath.replace("\n", ""))
+                    filePath = filePath.replace("\n", "")
+                #
+                #
+                    try:
+                        with sftp_client.open(os.path.join(imagesHomePath,filePath)) as f:
+                           img = cv2.imdecode(np.fromstring(f.read(), np.uint8), 1)
+
+                        cv2.imshow("image", img)
+                        cv2.waitKey(0)
+
+                    except:
+                        print("vish")
